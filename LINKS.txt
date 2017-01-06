@@ -1,0 +1,4 @@
+http://webpack.github.io/docs/
+http://webpack.github.io/docs/configuration.html
+http://babeljs.io/docs/usage/babelrc/
+http://jamesknelson.com/the-six-things-you-need-to-know-about-babel-6/

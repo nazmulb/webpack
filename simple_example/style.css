@@ -1,0 +1,7 @@
+body {
+    background: yellow;
+    width: 500px;
+    border: 1px dashed red;
+    padding: 10px;
+    margin: 50px;
+}
