@@ -68,10 +68,10 @@ add `content.js`
 module.exports = "It works from content.js.";
 ```
 
-update `entry.js`
+update `entry.js` ( - means remove, + means add the code)
 ```js
-- ~~document.write("It works.");~~
-+ document.write(require("./content.js"));
+- document.write("It works."); // remove this code
++ document.write(require("./content.js")); //add this code
 ```
 
 And recompile with:
@@ -118,7 +118,7 @@ We can bind file extensions to loaders so we just need to write: `require("./sty
 update `entry.js`
 
 ```js
-- ~~require("!style!css!./style.css");~~
+- require("!style!css!./style.css");
 + require("./style.css");
   document.write(require("./content.js"));
 ```
