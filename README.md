@@ -160,6 +160,16 @@ Now we can just run:
 webpack
 ```
 
+- The entry point tells webpack where to start. You can think of your application's entry point as the **contextual root** or **the first file to kick off your app**.
+- Once you've bundled all of your assets together, you still need to tell webpack **where** to bundle your application. The webpack output property tells webpack **how to treat bundled code**.
+- Loaders in webpack transform files into modules as they are added to your dependency graph.
+  - `module.loaders`: An array of automatically applied loaders. Each item can have these properties:
+      - `test`: A condition that must be met
+      - `exclude`: A condition that must not be met
+      - `include`: An array of paths or files where the imported files will be transformed by the loader
+      - `loader`: A string of “!” separated loaders
+      - `loaders`: An array of loaders as string
+
 ##### Watch mode:
 
 We don’t want to manually recompile after every change…
@@ -184,3 +194,4 @@ webpack-dev-server
 This binds a small express server on `localhost:8080` which serves your static assets as well as the bundle (compiled automatically). It automatically updates the browser page when a bundle is recompiled (SockJS). Open `http://localhost:8080/` in your browser.
 
 > The dev server uses webpack’s watch mode. It also prevents webpack from emitting the resulting files to disk. Instead it keeps and serves the resulting files from memory.
+
