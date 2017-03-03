@@ -132,3 +132,55 @@ webpack ./entry.js bundle.js --module-bind 'css=style!css'
 > Some environments may require double quotes: –module-bind “css=style!css”
 
 You should see the same result.
+
+#### Step 5:
+
+We want to move the config options into a config file:
+
+add `webpack.config.js`
+
+```js
+module.exports = {
+    entry: "./entry.js",
+    output: {
+        path: __dirname,
+        filename: "bundle.js"
+    },
+    module: {
+        loaders: [
+            { test: /\.css$/, loader: "style-loader!css-loader" }
+        ]
+    }
+};
+```
+
+Now we can just run:
+
+```js
+webpack
+```
+
+##### Watch mode:
+
+We don’t want to manually recompile after every change…
+
+```js
+webpack --watch
+```
+Webpack can cache unchanged modules and output files between compilations.
+
+##### Development Server:
+
+The development server is even better.
+
+```js
+npm install webpack-dev-server -g
+```
+
+```js
+webpack-dev-server
+```
+
+This binds a small express server on `localhost:8080` which serves your static assets as well as the bundle (compiled automatically). It automatically updates the browser page when a bundle is recompiled (SockJS). Open `http://localhost:8080/` in your browser.
+
+> The dev server uses webpack’s watch mode. It also prevents webpack from emitting the resulting files to disk. Instead it keeps and serves the resulting files from memory.
