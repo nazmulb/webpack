@@ -162,7 +162,7 @@ webpack
 
 - The entry point tells webpack where to start. You can think of your application's entry point as the **contextual root** or **the first file to kick off your app**.
 - Once you've bundled all of your assets together, you still need to tell webpack **where** to bundle your application. The webpack output property tells webpack **how to treat bundled code**.
-- Loaders in webpack transform files into modules as they are added to your dependency graph.
+- Loaders are special modules webpack uses to ‘load’ other modules (written in another language) into JavaScript (that webpack understands).
   - `module.loaders`: An array of automatically applied loaders. Each item can have these properties:
       - `test`: A condition that must be met
       - `exclude`: A condition that must not be met
@@ -179,7 +179,7 @@ webpack --watch
 ```
 Webpack can cache unchanged modules and output files between compilations.
 
-##### Development Server:
+##### Development Server: for more click <a href="http://webpack.github.io/docs/webpack-dev-server.html">here</a>
 
 The development server is even better.
 
@@ -195,3 +195,6 @@ This binds a small express server on `localhost:8080` which serves your static a
 
 > The dev server uses webpack’s watch mode. It also prevents webpack from emitting the resulting files to disk. Instead it keeps and serves the resulting files from memory.
 
+#### Transpiling `ES6` using `babel-loader`. Click <a href="http://webpack.github.io/docs/usage.html">here</a>.
+
+Thanks!
