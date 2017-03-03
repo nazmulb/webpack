@@ -3,7 +3,7 @@
 #### What is webpack?
 webpack is a module bundler for modern JavaScript applications. webpack takes modules with dependencies and generates static assets representing those modules.
 
-<img src="https://raw.githubusercontent.com/nazmulb/webpack/master/what-is-webpack.png" alt="webpack - module bundler" width="400" />
+<img src="https://raw.githubusercontent.com/nazmulb/webpack/master/what-is-webpack.png" alt="webpack - module bundler" width="500" />
 
 #### What are the advantages of webpack?
 
