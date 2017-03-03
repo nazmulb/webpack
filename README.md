@@ -25,9 +25,11 @@ You need to have <a href="https://nodejs.org/en/">node.js</a> installed.
 ```js
 npm install webpack -g
 ```
-This makes the webpack command available.
+*This makes the webpack command available.*
 
-#### Start with a empty directory. Create these files:
+#### Step 1:
+
+Start with a empty directory. Create these files:
 
 add `entry.js`
 
@@ -48,7 +50,7 @@ add `index.html`
 </html>
 ```
 
-#### Then run the following:
+Then run the following:
 
 ```js
 webpack ./entry.js bundle.js
@@ -56,3 +58,77 @@ webpack ./entry.js bundle.js
 
 It will compile your file and create a bundle file. Open `index.html` in your browser. It should display `It works`.
 
+#### Step 2:
+
+Next, we will move some code into an extra file.
+
+add `content.js`
+
+```js
+module.exports = "It works from content.js.";
+```
+
+update `entry.js`
+```js
+- ~~document.write("It works.");~~
++ document.write(require("./content.js"));
+```
+
+And recompile with:
+
+```js
+webpack ./entry.js bundle.js
+```
+
+Update your browser window and you should see the text `It works from content.js.`
+
+#### Step 3:
+
+We want to add a CSS file to our application.
+
+webpack can only handle JavaScript natively, so we need the `css-loader` to process CSS files. We also need the `style-loader` to apply the styles in the CSS file.
+
+Run `npm install css-loader style-loader` to install the loaders. (They need to be installed locally, without `-g`) This will create a `node_modules` folder for you, in which the loaders will live.
+
+Let’s use them:
+
+add `style.css`
+
+```js
+body {
+    background: yellow;
+}
+```
+
+update `entry.js`
+
+```js
++ require("!style!css!./style.css");
+document.write(require("./content.js"));
+```
+
+Recompile and update your browser to see your application with yellow background.
+
+#### Step 4:
+
+We don’t want to write such long requires `require("!style!css!./style.css");`
+
+We can bind file extensions to loaders so we just need to write: `require("./style.css")`
+
+update `entry.js`
+
+```js
+- ~~require("!style!css!./style.css");~~
++ require("./style.css");
+  document.write(require("./content.js"));
+```
+
+Run the compilation with:
+
+```js
+webpack ./entry.js bundle.js --module-bind 'css=style!css'
+```
+
+> Some environments may require double quotes: –module-bind “css=style!css”
+
+You should see the same result.
