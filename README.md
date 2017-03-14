@@ -111,7 +111,7 @@ Recompile and update your browser to see your application with yellow background
 
 #### Step 4:
 
-We don’t want to write such long requires `require("!style!css!./style.css");`
+We don’t want to write such long requires `require("!style-loader!css-loader!./style.css");`
 
 We can bind file extensions to loaders so we just need to write: `require("./style.css")`
 
@@ -129,7 +129,7 @@ Run the compilation with:
 webpack ./entry.js bundle.js --module-bind 'css=style-loader!css-loader'
 ```
 
-> Some environments may require double quotes: –module-bind “css=style!css”
+> Some environments may require double quotes: –module-bind “css=style-loader!css-loader”
 
 You should see the same result.
 
