@@ -126,7 +126,7 @@ update `entry.js`
 Run the compilation with:
 
 ```js
-webpack ./entry.js bundle.js --module-bind 'css=style!css'
+webpack ./entry.js bundle.js --module-bind 'css=style-loader!css-loader'
 ```
 
 > Some environments may require double quotes: –module-bind “css=style!css”
