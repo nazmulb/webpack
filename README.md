@@ -103,7 +103,7 @@ body {
 update `entry.js`
 
 ```js
-+ require("!style!css!./style.css");
++ require("!style-loader!css-loader!./style.css");
 document.write(require("./content.js"));
 ```
 
@@ -118,7 +118,7 @@ We can bind file extensions to loaders so we just need to write: `require("./sty
 update `entry.js`
 
 ```js
-- require("!style!css!./style.css");
+- require("!style-loader!css-loader!./style.css");
 + require("./style.css");
   document.write(require("./content.js"));
 ```
