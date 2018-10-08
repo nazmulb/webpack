@@ -1,6 +1,5 @@
-const webpack = require('webpack');
-
 module.exports = {
+    mode: 'production',
     entry: './src/app.js',
     output: {
         path: __dirname + '/bin',
@@ -8,24 +7,13 @@ module.exports = {
         filename: 'app.bundle.js'
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
-
-            query: {
-                presets: ['es2015']
+            options: {
+                presets: ['env']
             }
         }]
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false
-            }
-        })
-    ]
+    }
 }

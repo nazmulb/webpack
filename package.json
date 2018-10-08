@@ -2,22 +2,21 @@
   "name": "webpack-app",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-    "preinstall": "npm install webpack webpack-dev-server -g"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
     "css-loader": "^0.26.4",
     "jquery": "^3.2.1",
     "style-loader": "^0.13.2"
   },
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^6.4.1",
-    "babel-preset-es2015": "^6.24.1",
-    "webpack": "^2.4.1"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   }
 }

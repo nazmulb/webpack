@@ -23,9 +23,14 @@ webpack is a module bundler for modern JavaScript applications. webpack takes mo
 You need to have <a href="https://nodejs.org/en/">node.js</a> installed.
 
 ```js
-npm install webpack -g
+npm install webpack --save-dev
 ```
-*This makes the webpack command available.*
+
+If you're using webpack v4 or later, you'll need to install the CLI.
+
+```js
+npm install webpack-cli --save-dev
+```
 
 #### Step 1:
 
@@ -53,7 +58,7 @@ add `index.html`
 Then run the following:
 
 ```js
-webpack ./entry.js bundle.js
+../node_modules/.bin/webpack --mode development ./entry.js bundle.js
 ```
 
 It will compile your file and create a bundle file. Open `index.html` in your browser. It should display `It works`.
@@ -77,7 +82,7 @@ update `entry.js` ( - means remove, + means add the code)
 And recompile with:
 
 ```js
-webpack ./entry.js bundle.js
+../node_modules/.bin/webpack --mode development ./entry.js bundle.js
 ```
 
 Update your browser window and you should see the text `It works from content.js.`
@@ -88,7 +93,7 @@ We want to add a CSS file to our application.
 
 webpack can only handle JavaScript natively, so we need the `css-loader` to process CSS files. We also need the `style-loader` to apply the styles in the CSS file.
 
-Run `npm install css-loader style-loader` to install the loaders. (They need to be installed locally, without `-g`) This will create a `node_modules` folder for you, in which the loaders will live.
+Run `npm install css-loader style-loader --save` to install the loaders. (They need to be installed locally, without `-g`) This will create a `node_modules` folder for you, in which the loaders will live.
 
 Let’s use them:
 
@@ -126,7 +131,7 @@ update `entry.js`
 Run the compilation with:
 
 ```js
-webpack ./entry.js bundle.js --module-bind 'css=style-loader!css-loader'
+../node_modules/.bin/webpack --mode development ./entry.js bundle.js --module-bind 'css=style-loader!css-loader'
 ```
 
 > Some environments may require double quotes: –module-bind “css=style-loader!css-loader”
@@ -147,7 +152,7 @@ module.exports = {
         filename: "bundle.js"
     },
     module: {
-        loaders: [
+        rules: [
             { test: /\.css$/, loader: "style-loader!css-loader" }
         ]
     }
@@ -157,44 +162,46 @@ module.exports = {
 Now we can just run:
 
 ```js
-webpack
+../node_modules/.bin/webpack --mode development
 ```
 
 - The entry point tells webpack where to start. You can think of your application's entry point as the **contextual root** or **the first file to kick off your app**.
 - Once you've bundled all of your assets together, you still need to tell webpack **where** to bundle your application. The webpack output property tells webpack **how to treat bundled code**.
 - Loaders are special modules webpack uses to ‘load’ other modules (written in another language) into JavaScript (that webpack understands).
-  - `module.loaders`: An array of automatically applied loaders. Each item can have these properties:
+  - `module.rules`: Allows you to specify several loaders within your webpack configuration. Each item can have these properties:
       - `test`: A condition that must be met
       - `exclude`: A condition that must not be met
       - `include`: An array of paths or files where the imported files will be transformed by the loader
       - `loader`: A string of “!” separated loaders
-      - `loaders`: An array of loaders as string
+      - `options`: Options for the loader
+
+More info about <a href="https://webpack.js.org/concepts/">core concepts</a> and <a href="https://webpack.js.org/configuration/">configuration</a>.
 
 ##### Watch mode:
 
 We don’t want to manually recompile after every change…
 
 ```js
-webpack --watch
+../node_modules/.bin/webpack --mode development --watch
 ```
 Webpack can cache unchanged modules and output files between compilations.
 
-##### Development Server: for more click <a href="http://webpack.github.io/docs/webpack-dev-server.html">here</a>
+##### Development Server: for more click <a href="https://webpack.js.org/configuration/dev-server/">here</a>
 
 The development server is even better.
 
 ```js
-npm install webpack-dev-server -g
+npm install webpack-dev-server --save-dev
 ```
 
 ```js
-webpack-dev-server
+../node_modules/.bin/webpack-dev-server --mode development
 ```
 
 This binds a small express server on `localhost:8080` which serves your static assets as well as the bundle (compiled automatically). It automatically updates the browser page when a bundle is recompiled (SockJS). Open `http://localhost:8080/` in your browser.
 
 > The dev server uses webpack’s watch mode. It also prevents webpack from emitting the resulting files to disk. Instead it keeps and serves the resulting files from memory.
 
-#### Transpiling `ES6` using `babel-loader`. Click <a href="http://webpack.github.io/docs/usage.html">here</a>.
+#### Transpiling `ES6` using `babel-loader`. Click <a href="https://github.com/nazmulb/webpack/tree/master/transpiling_es2015">here</a>.
 
 Thanks!
